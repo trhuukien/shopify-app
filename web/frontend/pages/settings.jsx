@@ -47,7 +47,7 @@ export default function Index() {
   const handleSave =  useCallback(async () => {
     await save([{ path: 'settings/demo', value: formData }]);
   }, [formData]);
-  
+
   return (
     <Page
       title="General Config"
