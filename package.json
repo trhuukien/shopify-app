@@ -1,0 +1,34 @@
+{
+  "name": "@app/my_app",
+  "version": "1.0.0",
+  "main": "web/index.js",
+  "license": "UNLICENSED",
+  "scripts": {
+    "serve": "npm --workspace=@app/my_app-backend run serve",
+    "shopify": "shopify",
+    "build": "shopify app build",
+    "dev": "shopify app dev",
+    "info": "shopify app info",
+    "generate": "shopify app generate",
+    "deploy": "shopify app deploy",
+    "prisma": "npm --workspace=@app/my_app-backend run prisma",
+    "cron": "npm --workspace=@app/my_app-backend run cron:run",
+    "sdtout:log": "npm --workspace=@app/my_app-backend run sdtout:log",
+    "tsc": "npm --workspace=@app/my_app-frontend run tsc"
+  },
+  "dependencies": {
+    "@shopify/app": "^3.56.3",
+    "@shopify/cli": "^3.56.3",
+    "@shopify/polaris": "^12.18.0",
+    "@shopify/polaris-icons": "^8.5.0",
+    "request": "^2.88.2",
+    "uuid": "^11.0.3"
+  },
+  "author": "Kizchann",
+  "private": true,
+  "workspaces": [
+    "extensions/*",
+    "web",
+    "web/frontend"
+  ]
+}
