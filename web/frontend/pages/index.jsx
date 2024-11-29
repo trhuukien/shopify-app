@@ -11,7 +11,7 @@ export default function Index() {
     <Page title="Shopify App">
       <Layout>
         <Layout.Section>
-          <p>Create by Kizchann.</p>
+          <p>Create by Kizchann..</p>
         </Layout.Section>
 
         <Layout.Section>
