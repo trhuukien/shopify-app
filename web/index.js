@@ -20,6 +20,13 @@ const STATIC_PATH =
 const app = express();
 const server = http.createServer(app);
 
+app.use("/*", shopify.ensureInstalledOnShop(), async (_req, res, _next) => {
+  return res
+    .status(200)
+    .set("Content-Type", "text/html")
+    .send(readFileSync(join(STATIC_PATH, "index.html")));
+});
+
 // Set up Shopify authentication and webhook handling
 app.get(shopify.config.auth.path, shopify.auth.begin());
 app.get(
@@ -46,13 +53,6 @@ app.put('/api/config', putConfig);
 
 app.use(shopify.cspHeaders());
 app.use(serveStatic(STATIC_PATH, { index: false }));
-
-app.use("/*", shopify.ensureInstalledOnShop(), async (_req, res, _next) => {
-  return res
-    .status(200)
-    .set("Content-Type", "text/html")
-    .send(readFileSync(join(STATIC_PATH, "index.html")));
-});
 
 server.listen(PORT, () => {
   console.log(`🚀 Server is running on port ${PORT}`);
