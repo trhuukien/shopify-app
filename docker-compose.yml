@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  nginx:
+    image: nginx:latest
+    container_name: shopify_app-nginx
+    ports:
+      - "8080:80"
+    networks:
+      - app_network
+
+  mysql:
+    image: mysql:8.0
+    container_name: shopify_app-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: my_database
+      MYSQL_USER: kiz
+      MYSQL_PASSWORD: 1231234
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app_network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: shopify_app-phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - app_network
+
+volumes:
+  mysql_data:
+
+networks:
+  app_network:

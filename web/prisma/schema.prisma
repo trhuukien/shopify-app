@@ -18,6 +18,13 @@ model Session {
   accessToken   String
   userId        BigInt?
   configs       Config[]
+  firstName      String?
+  lastName       String?
+  email          String?
+  accountOwner   Boolean?
+  locale         String?
+  collaborator   Boolean?
+  emailVerified  Boolean?
 }
 
 model Config {
