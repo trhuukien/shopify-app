@@ -33,3 +33,5 @@ web/database.sqlite
 /.vscode/*
 
 web/prisma/migrations/*
+
+docker-compose.yml
