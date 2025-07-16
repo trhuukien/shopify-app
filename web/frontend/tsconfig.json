@@ -39,11 +39,6 @@
     "typePatches"
   ],
   "files": [
-    "talons/settings/hogia/useHogia.ts",
-    "./context/settings.tsx",
-    "./utils/isEmpty.ts",
-    "./talons/Log/useJob.ts",
-    "./components/TaskProgress/pendingcard.tsx"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

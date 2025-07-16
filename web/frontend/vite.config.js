@@ -1,7 +1,6 @@
 import { defineConfig, splitVendorChunkPlugin } from "vite";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
-import https from "https";
 import react from "@vitejs/plugin-react";
 
 if (
@@ -67,12 +66,7 @@ export default defineConfig({
     proxy: {
       "^/(\\?.*)?$": proxyOptions,
       "^/api(/|(\\?.*)?$)": proxyOptions,
-      "^/live": {
-        target: `ws://127.0.0.1:8989`,
-        changeOrigin: false,
-        secure: false,
-        ws: true,
-      }
+      "^/app(/|(\\?.*)?$)": proxyOptions
     },
   },
 });
