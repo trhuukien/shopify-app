@@ -35,23 +35,38 @@ app.post(
 // If you are adding routes outside of the /api path, remember to
 // also add a proxy rule for them in web/frontend/vite.config.js
 
-app.use("/api/*", shopify.validateAuthenticatedSession());
+app.use("/app/*", shopify.validateAuthenticatedSession());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Router
-app.get('/api/config', getConfig);
-app.put('/api/config', putConfig);
+
+
+// Router BE
+app.get('/app/config', getConfig);
+app.put('/app/config', putConfig);
+
+// Router FE
+// app.get('/api/resursbank/stores', getStores);
+// app.get('/api/resursbank/payment_methods', getPaymentMethods);
+// app.get('/api/resursbank/price_signage', getPriceSignage);
+
+
 
 app.use(shopify.cspHeaders());
 app.use(serveStatic(STATIC_PATH, { index: false }));
 
-app.use("/*", shopify.ensureInstalledOnShop(), async (_req, res, _next) => {
-  return res
-    .status(200)
-    .set("Content-Type", "text/html")
-    .send(readFileSync(join(STATIC_PATH, "index.html")));
+app.use(async (req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    return next();
+  }
+
+  await shopify.ensureInstalledOnShop()(req, res, async () => {
+    res
+      .status(200)
+      .set("Content-Type", "text/html")
+      .send(readFileSync(join(STATIC_PATH, "index.html")));
+  });
 });
 
 server.listen(PORT, () => {

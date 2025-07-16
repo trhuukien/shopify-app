@@ -3,7 +3,7 @@ import { useAdapter } from '~/talons/adapter/useAdapter';
 import { BrowserRouter } from "react-router-dom";
 import { ApolloProvider } from '@apollo/client';
 import { Loading } from '@shopify/app-bridge-react';
-import { Spinner } from '@shopify/polaris';
+import { BlockStack, Box, InlineGrid, Spinner } from '@shopify/polaris';
 import PropTypes from 'prop-types';
 
 import {
@@ -13,10 +13,14 @@ import {
 
 export const ShopifyLoadingFull = () => {
   return (
-    <div className='grid grid-rows-1 justify-center w-full h-screen items-center'>
-      <Loading />
-      <Spinner accessibilityLabel={'Loading'} />
-    </div>
+    <Box>
+      <BlockStack inlineAlign="center" align='center'>
+        <div style={{minHeight: "100vh", display: "flex", alignItems: "center"}}>
+          <Loading />
+          <Spinner accessibilityLabel={'Loading'} />
+        </div>
+      </BlockStack>
+    </Box>
   );
 };
 
