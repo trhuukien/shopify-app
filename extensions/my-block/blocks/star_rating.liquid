@@ -1,0 +1,26 @@
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var header = document.querySelector('header'); // tuỳ theme mà selector có thể là #shopify-section-header v.v.
+    if (header) {
+      var toggleBtn = document.createElement('div');
+      toggleBtn.innerHTML = '☰ Menu';
+      toggleBtn.style.cssText = 'position:absolute; right:20px; top:10px; cursor:pointer;';
+      toggleBtn.onclick = function () {
+        alert('Toggle clicked!');
+      };
+      header.appendChild(toggleBtn);
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Star Rating",
+  "target": "body",
+  "settings": [
+    { "type": "product", "id": "product", "label": "product", "autofill": true },
+    { "type": "color", "id": "colour", "label": "Star Colour", "default": "#ff0000" }
+  ]
+}
+{% endschema %}
+
